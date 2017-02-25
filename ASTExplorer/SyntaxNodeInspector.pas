@@ -60,8 +60,7 @@ type
 implementation
 
 uses
-  DesignEditors, DesignIntf, TypInfo,
-  SysUtils;
+  DesignEditors, DesignIntf, TypInfo, SysUtils;
 
 type
   TCompoundSyntaxNodePersistent = class(TSyntaxNodePersistent)
