@@ -1,0 +1,50 @@
+package ASTExplorer;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  designide;
+
+contains
+  Expert in 'Expert.pas',
+  TreeFm in 'TreeFm.pas' {TreeForm},
+  IDEServices in 'IDEServices.pas',
+  SyntaxNodeInspector in 'SyntaxNodeInspector.pas',
+  DelphiAST.Classes in '..\lib\DelphiAST-master\Source\DelphiAST.Classes.pas',
+  DelphiAST.Consts in '..\lib\DelphiAST-master\Source\DelphiAST.Consts.pas',
+  DelphiAST in '..\lib\DelphiAST-master\Source\DelphiAST.pas',
+  DelphiAST.Writer in '..\lib\DelphiAST-master\Source\DelphiAST.Writer.pas',
+  SimpleParser.Lexer in '..\lib\DelphiAST-master\Source\SimpleParser\SimpleParser.Lexer.pas',
+  SimpleParser.Lexer.Types in '..\lib\DelphiAST-master\Source\SimpleParser\SimpleParser.Lexer.Types.pas',
+  SimpleParser in '..\lib\DelphiAST-master\Source\SimpleParser\SimpleParser.pas',
+  SimpleParser.Types in '..\lib\DelphiAST-master\Source\SimpleParser\SimpleParser.Types.pas',
+  Helpers in 'Helpers.pas',
+  ASTUtils in 'ASTUtils.pas';
+
+end.

@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{89A1553C-C3A3-4D61-A1EF-35DFD301A22A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ASTExplorer\ASTExplorer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ASTExplorer">
+        <MSBuild Projects="ASTExplorer\ASTExplorer.dproj"/>
+    </Target>
+    <Target Name="ASTExplorer:Clean">
+        <MSBuild Projects="ASTExplorer\ASTExplorer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ASTExplorer:Make">
+        <MSBuild Projects="ASTExplorer\ASTExplorer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ASTExplorer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ASTExplorer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ASTExplorer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
