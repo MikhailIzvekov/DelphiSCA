@@ -1,0 +1,3 @@
+[submodule "lib/DelphiAST-master"]
+	path = lib/DelphiAST-master
+	url = https://github.com/RomanYankovsky/DelphiAST
