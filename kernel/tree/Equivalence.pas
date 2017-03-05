@@ -24,7 +24,12 @@ type
       const AAttributes1: TArray<TAttributeEntry>;
       const AAttributes2: TArray<TAttributeEntry>): Boolean;
   protected
-    function Equal(const ANode1: TSyntaxNode; const ANode2: TSyntaxNode): Boolean;
+    function Equal(const ANode1: TSyntaxNode; const ANode2: TSyntaxNode): Boolean; virtual;
+  end;
+
+  TChildrensEquivalenceChecker = class(TPrimitiveEquivalenceChecker, IEquivalenceChecker)
+  protected
+    function Equal(const ANode1: TSyntaxNode; const ANode2: TSyntaxNode): Boolean; override;
   end;
 
 {$IFDEF UNITTEST}
@@ -40,6 +45,17 @@ type
     procedure TestAttributesEqual;
     procedure TestEqual;
   end;
+
+  TestTChildrensEquivalenceChecker = class(TTestCase)
+  strict private
+    FSUT: TChildrensEquivalenceChecker;
+  public
+    procedure SetUp; override;
+    procedure TearDown; override;
+  published
+    procedure TestEqual;
+  end;
+
 {$ENDIF}
 
 { TPrimitiveEquivalenceChecker }
@@ -79,6 +95,30 @@ begin
 
   if (ANode1 is TValuedSyntaxNode) and (TValuedSyntaxNode(ANode1).Value <> TValuedSyntaxNode(ANode2).Value) then
       Exit(False);
+
+  Result := True;
+
+end;
+
+{ TChildrensEquivalenceChecker }
+
+function TChildrensEquivalenceChecker.Equal(const ANode1, ANode2: TSyntaxNode): Boolean;
+var
+  I: Integer;
+  Delta: Integer;
+begin
+  if Length(ANode1.ChildNodes) <> Length(ANode2.ChildNodes) then
+    Exit(False);
+
+  Result := inherited;
+
+  if Result then
+  begin
+    Delta := Low(ANode2.ChildNodes) - Low(ANode1.ChildNodes);
+    for I := Low(ANode1.ChildNodes) to High(ANode1.ChildNodes) do
+      if not Equal(ANode1.ChildNodes[I], ANode2.ChildNodes[I + Delta]) then
+        Exit(False);
+  end;
 
   Result := True;
 end;
@@ -182,8 +222,49 @@ begin
   end;
 end;
 
+{ TestTChildrensEquivalenceChecker }
+
+procedure TestTChildrensEquivalenceChecker.SetUp;
+begin
+  inherited;
+  FSUT := TChildrensEquivalenceChecker.Create;
+end;
+
+procedure TestTChildrensEquivalenceChecker.TearDown;
+begin
+  inherited;
+  FreeAndNil(FSUT);
+end;
+
+procedure TestTChildrensEquivalenceChecker.TestEqual;
+var
+  DotNode: TSyntaxNode;
+  Node1: TSyntaxNode;
+  Node2: TSyntaxNode;
+begin
+  Node1 := TSyntaxNode.Create(ntNotEqual);
+  DotNode := Node1.AddChild(ntDot);
+  DotNode.AddChild(ntIdentifier).SetAttribute(anName, 'foo');
+  DotNode.AddChild(ntIdentifier).SetAttribute(anName, 'x');
+  Node1.AddChild(ntLiteral).SetAttribute(anType, 'numeric');
+  Node2 := Node1.Clone;
+
+  try
+    CheckTrue(FSUT.Equal(Node1, Node2),
+      'Nodes should be equal');
+
+    Node1.DeleteChild(DotNode);
+    CheckFalse(FSUT.Equal(Node1, Node2),
+      'Nodes shouldnt be equal');
+  finally
+    Node1.Free;
+    Node2.Free;
+  end;
+end;
+
 initialization
   RegisterTest(TestTPrimitiveEquivalenceChecker.Suite);
+  RegisterTest(TestTChildrensEquivalenceChecker.Suite);
 
 {$ENDIF}
 
