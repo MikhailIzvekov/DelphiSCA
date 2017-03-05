@@ -3,7 +3,19 @@
         <ProjectGuid>{89A1553C-C3A3-4D61-A1EF-35DFD301A22A}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="kernel\DelphiAST\DelphiAST.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Interfaces\Intf.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="kernel\tree\Tree.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="ASTExplorer\ASTExplorer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\SCATests.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -14,6 +26,33 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="DelphiAST">
+        <MSBuild Projects="kernel\DelphiAST\DelphiAST.dproj"/>
+    </Target>
+    <Target Name="DelphiAST:Clean">
+        <MSBuild Projects="kernel\DelphiAST\DelphiAST.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiAST:Make">
+        <MSBuild Projects="kernel\DelphiAST\DelphiAST.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Intf">
+        <MSBuild Projects="Interfaces\Intf.dproj"/>
+    </Target>
+    <Target Name="Intf:Clean">
+        <MSBuild Projects="Interfaces\Intf.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Intf:Make">
+        <MSBuild Projects="Interfaces\Intf.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Tree">
+        <MSBuild Projects="kernel\tree\Tree.dproj"/>
+    </Target>
+    <Target Name="Tree:Clean">
+        <MSBuild Projects="kernel\tree\Tree.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Tree:Make">
+        <MSBuild Projects="kernel\tree\Tree.dproj" Targets="Make"/>
+    </Target>
     <Target Name="ASTExplorer">
         <MSBuild Projects="ASTExplorer\ASTExplorer.dproj"/>
     </Target>
@@ -23,14 +62,23 @@
     <Target Name="ASTExplorer:Make">
         <MSBuild Projects="ASTExplorer\ASTExplorer.dproj" Targets="Make"/>
     </Target>
+    <Target Name="SCATests">
+        <MSBuild Projects="Test\SCATests.dproj"/>
+    </Target>
+    <Target Name="SCATests:Clean">
+        <MSBuild Projects="Test\SCATests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SCATests:Make">
+        <MSBuild Projects="Test\SCATests.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="ASTExplorer"/>
+        <CallTarget Targets="DelphiAST;Intf;Tree;ASTExplorer;SCATests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ASTExplorer:Clean"/>
+        <CallTarget Targets="DelphiAST:Clean;Intf:Clean;Tree:Clean;ASTExplorer:Clean;SCATests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ASTExplorer:Make"/>
+        <CallTarget Targets="DelphiAST:Make;Intf:Make;Tree:Make;ASTExplorer:Make;SCATests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
