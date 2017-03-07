@@ -5,7 +5,7 @@ DelphiSCA consist of
 
 [![AST Explorer demo](https://img.youtube.com/vi/eP4tAqprWLQ/0.jpg)](https://www.youtube.com/watch?v=eP4tAqprWLQ)
 
-- ... at the moment - it's all
+- ... at the moment - that's all
 
 ### Dependencies:
 
