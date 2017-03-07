@@ -6,10 +6,19 @@
         <Projects Include="kernel\DelphiAST\DelphiAST.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Sys\Spring4D\Spring.Base.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Sys\Spring4D\Spring.Core.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="Interfaces\Intf.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="kernel\tree\Tree.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="kernel\Diagnostics\Diagnostics.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="ASTExplorer\ASTExplorer.dproj">
@@ -35,6 +44,24 @@
     <Target Name="DelphiAST:Make">
         <MSBuild Projects="kernel\DelphiAST\DelphiAST.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Spring_Base">
+        <MSBuild Projects="Sys\Spring4D\Spring.Base.dproj"/>
+    </Target>
+    <Target Name="Spring_Base:Clean">
+        <MSBuild Projects="Sys\Spring4D\Spring.Base.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Spring_Base:Make">
+        <MSBuild Projects="Sys\Spring4D\Spring.Base.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Spring_Core">
+        <MSBuild Projects="Sys\Spring4D\Spring.Core.dproj"/>
+    </Target>
+    <Target Name="Spring_Core:Clean">
+        <MSBuild Projects="Sys\Spring4D\Spring.Core.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Spring_Core:Make">
+        <MSBuild Projects="Sys\Spring4D\Spring.Core.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Intf">
         <MSBuild Projects="Interfaces\Intf.dproj"/>
     </Target>
@@ -52,6 +79,15 @@
     </Target>
     <Target Name="Tree:Make">
         <MSBuild Projects="kernel\tree\Tree.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Diagnostics">
+        <MSBuild Projects="kernel\Diagnostics\Diagnostics.dproj"/>
+    </Target>
+    <Target Name="Diagnostics:Clean">
+        <MSBuild Projects="kernel\Diagnostics\Diagnostics.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Diagnostics:Make">
+        <MSBuild Projects="kernel\Diagnostics\Diagnostics.dproj" Targets="Make"/>
     </Target>
     <Target Name="ASTExplorer">
         <MSBuild Projects="ASTExplorer\ASTExplorer.dproj"/>
@@ -72,13 +108,13 @@
         <MSBuild Projects="Test\SCATests.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="DelphiAST;Intf;Tree;ASTExplorer;SCATests"/>
+        <CallTarget Targets="DelphiAST;Spring_Base;Spring_Core;Intf;Tree;Diagnostics;ASTExplorer;SCATests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DelphiAST:Clean;Intf:Clean;Tree:Clean;ASTExplorer:Clean;SCATests:Clean"/>
+        <CallTarget Targets="DelphiAST:Clean;Spring_Base:Clean;Spring_Core:Clean;Intf:Clean;Tree:Clean;Diagnostics:Clean;ASTExplorer:Clean;SCATests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DelphiAST:Make;Intf:Make;Tree:Make;ASTExplorer:Make;SCATests:Make"/>
+        <CallTarget Targets="DelphiAST:Make;Spring_Base:Make;Spring_Core:Make;Intf:Make;Tree:Make;Diagnostics:Make;ASTExplorer:Make;SCATests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

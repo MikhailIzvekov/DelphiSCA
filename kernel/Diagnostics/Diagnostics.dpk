@@ -1,4 +1,4 @@
-package Intf;
+package Diagnostics;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -29,10 +29,13 @@ package Intf;
 
 requires
   rtl,
-  DelphiAST;
+  DelphiAST,
+  Intf,
+  Tree,
+  Spring.Base,
+  Spring.Core;
 
 contains
-  TreeIntf in 'TreeIntf.pas',
-  DiagnosticsIntf in 'DiagnosticsIntf.pas';
+  ASTObserver in 'ASTObserver.pas';
 
 end.

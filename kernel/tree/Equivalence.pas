@@ -6,6 +6,7 @@ implementation
 
 uses
   SysUtils,
+  Spring.Container,
   DelphiAST.Classes, DelphiAST.Consts,
   TreeIntf
 {$IFDEF UNITTEST}
@@ -261,11 +262,14 @@ begin
     Node2.Free;
   end;
 end;
+{$ENDIF}
 
 initialization
+{$IFDEF UNITTEST}
   RegisterTest(TestTPrimitiveEquivalenceChecker.Suite);
   RegisterTest(TestTChildrensEquivalenceChecker.Suite);
-
 {$ENDIF}
+  GlobalContainer.RegisterType<TChildrensEquivalenceChecker>.Implements<IEquivalenceChecker>;
+  GlobalContainer.Build;
 
 end.

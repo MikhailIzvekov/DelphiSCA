@@ -1,3 +1,6 @@
 [submodule "lib/DelphiAST-master"]
 	path = lib/DelphiAST-master
 	url = https://github.com/RomanYankovsky/DelphiAST
+[submodule "lib/Spring4D"]
+	path = lib/Spring4D
+	url = https://bitbucket.org/sglienke/spring4d/

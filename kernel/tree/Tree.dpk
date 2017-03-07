@@ -30,7 +30,9 @@ package Tree;
 requires
   rtl,
   DelphiAST,
-  Intf;
+  Intf,
+  Spring.Base,
+  Spring.Core;
 
 contains
   Equivalence in 'Equivalence.pas';
