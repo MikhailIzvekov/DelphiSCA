@@ -24,12 +24,17 @@ package Spring.Base;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
-{$DEFINE SPRING_NO_WARNING}
 {$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'Spring4D Base package'}
 {$RUNONLY}
 {$IMPLICITBUILD OFF}
 
+{$I Spring.inc}
+
 requires
+{$IFDEF FMX}
+  fmx,
+{$ENDIF}
   rtl;
 
 contains
@@ -50,10 +55,22 @@ contains
   Spring.Events in '..\..\lib\Spring4D\Source\Base\Spring.Events.pas',
   Spring.Events.Base in '..\..\lib\Spring4D\Source\Base\Spring.Events.Base.pas',
   Spring.Helpers in '..\..\lib\Spring4D\Source\Base\Spring.Helpers.pas',
-  Spring.Reflection in '..\..\lib\Spring4D\Source\Base\Reflection\Spring.Reflection.pas',
-  Spring.Reflection.Activator in '..\..\lib\Spring4D\Source\Base\Reflection\Spring.Reflection.Activator.pas',
-  Spring.Reflection.ValueConverters in '..\..\lib\Spring4D\Source\Base\Reflection\Spring.Reflection.ValueConverters.pas',
+  Spring.Logging in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.pas',
+  Spring.Logging.Appenders in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.Appenders.pas',
+  Spring.Logging.Appenders.Base in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.Appenders.Base.pas',
+  Spring.Logging.Controller in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.Controller.pas',
+  Spring.Logging.Extensions in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.Extensions.pas',
+  Spring.Logging.Loggers in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.Loggers.pas',
+  Spring.Logging.NullLogger in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.NullLogger.pas',
+  Spring.Logging.ResourceStrings in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.ResourceStrings.pas',
+  Spring.Logging.Serializers in '..\..\lib\Spring4D\Source\Base\Logging\Spring.Logging.Serializers.pas',
+  Spring.MethodIntercept in '..\..\lib\Spring4D\Source\Base\Spring.MethodIntercept.pas',
+  Spring.Reflection in '..\..\lib\Spring4D\Source\Base\Spring.Reflection.pas',
   Spring.ResourceStrings in '..\..\lib\Spring4D\Source\Base\Spring.ResourceStrings.pas',
-  Spring.SystemUtils in '..\..\lib\Spring4D\Source\Base\Spring.SystemUtils.pas';
+  Spring.SystemUtils in '..\..\lib\Spring4D\Source\Base\Spring.SystemUtils.pas',
+  Spring.Times in '..\..\lib\Spring4D\Source\Base\Spring.Times.pas',
+  Spring.ValueConverters in '..\..\lib\Spring4D\Source\Base\Spring.ValueConverters.pas',
+  Spring.VirtualClass in '..\..\lib\Spring4D\Source\Base\Spring.VirtualClass.pas',
+  Spring.VirtualInterface in '..\..\lib\Spring4D\Source\Base\Spring.VirtualInterface.pas';
 
 end.
