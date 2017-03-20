@@ -36,6 +36,8 @@ requires
   Spring.Core;
 
 contains
-  ASTObserver in 'ASTObserver.pas';
+  ASTObserver in 'ASTObserver.pas',
+  D001_IdenticalSubExpressions in 'D001_IdenticalSubExpressions.pas',
+  DiagnosticsFactory in 'DiagnosticsFactory.pas';
 
 end.

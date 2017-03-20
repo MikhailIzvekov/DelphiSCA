@@ -1,18 +1,13 @@
+{ This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at http://mozilla.org/MPL/2.0/. }
 unit Equivalence;
 
 interface
 
-implementation
-
 uses
-  SysUtils,
-  Spring.Container,
   DelphiAST.Classes, DelphiAST.Consts,
-  TreeIntf
-{$IFDEF UNITTEST}
-  , TestFramework
-{$ENDIF}
-;
+  TreeIntf;
 
 type
   TPrimitiveEquivalenceChecker = class(TInterfacedObject, IEquivalenceChecker)
@@ -33,7 +28,17 @@ type
     function Equal(const ANode1: TSyntaxNode; const ANode2: TSyntaxNode): Boolean; override;
   end;
 
+implementation
+
+uses
+  SysUtils
 {$IFDEF UNITTEST}
+  , TestFramework
+{$ENDIF}
+;
+
+{$IFDEF UNITTEST}
+type
   // Test for class TPrimitiveEquivalenceChecker
   TestTPrimitiveEquivalenceChecker = class(TTestCase)
   strict private
@@ -269,7 +274,5 @@ initialization
   RegisterTest(TestTPrimitiveEquivalenceChecker.Suite);
   RegisterTest(TestTChildrensEquivalenceChecker.Suite);
 {$ENDIF}
-  GlobalContainer.RegisterType<TChildrensEquivalenceChecker>.Implements<IEquivalenceChecker>;
-  GlobalContainer.Build;
 
 end.

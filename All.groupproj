@@ -27,6 +27,9 @@
         <Projects Include="Test\SCATests.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="DelphiSCA\DelphiSCA.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -107,14 +110,23 @@
     <Target Name="SCATests:Make">
         <MSBuild Projects="Test\SCATests.dproj" Targets="Make"/>
     </Target>
+    <Target Name="DelphiSCA">
+        <MSBuild Projects="DelphiSCA\DelphiSCA.dproj"/>
+    </Target>
+    <Target Name="DelphiSCA:Clean">
+        <MSBuild Projects="DelphiSCA\DelphiSCA.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiSCA:Make">
+        <MSBuild Projects="DelphiSCA\DelphiSCA.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DelphiAST;Spring_Base;Spring_Core;Intf;Tree;Diagnostics;ASTExplorer;SCATests"/>
+        <CallTarget Targets="DelphiAST;Spring_Base;Spring_Core;Intf;Tree;Diagnostics;ASTExplorer;SCATests;DelphiSCA"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DelphiAST:Clean;Spring_Base:Clean;Spring_Core:Clean;Intf:Clean;Tree:Clean;Diagnostics:Clean;ASTExplorer:Clean;SCATests:Clean"/>
+        <CallTarget Targets="DelphiAST:Clean;Spring_Base:Clean;Spring_Core:Clean;Intf:Clean;Tree:Clean;Diagnostics:Clean;ASTExplorer:Clean;SCATests:Clean;DelphiSCA:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DelphiAST:Make;Spring_Base:Make;Spring_Core:Make;Intf:Make;Tree:Make;Diagnostics:Make;ASTExplorer:Make;SCATests:Make"/>
+        <CallTarget Targets="DelphiAST:Make;Spring_Base:Make;Spring_Core:Make;Intf:Make;Tree:Make;Diagnostics:Make;ASTExplorer:Make;SCATests:Make;DelphiSCA:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -16,7 +16,9 @@ program SCATests;
 
 uses
   DUnitTestRunner,
-  Equivalence in '..\kernel\tree\Equivalence.pas';
+  Equivalence in '..\kernel\tree\Equivalence.pas',
+  D001_IdenticalSubExpressions in '..\kernel\Diagnostics\D001_IdenticalSubExpressions.pas',
+  LicenseChecker in 'LicenseChecker.pas';
 
 {$R *.RES}
 
